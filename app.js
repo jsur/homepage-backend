@@ -4,6 +4,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const pug = require('pug');
+const cors = require('cors');
 
 const index = require('./routes/index');
 const api = require('./routes/api');
@@ -11,6 +12,13 @@ const api = require('./routes/api');
 require('dotenv').config({'path': '.env'});
 
 const app = express();
+
+corsOpts = {
+  origin: true,
+  credentials: true
+}
+
+app.use(cors(corsOpts));
 
 
 // view engine setup
