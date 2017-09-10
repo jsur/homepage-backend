@@ -15,6 +15,8 @@ const whatIsContentType = 'whatIsConsentio';
 const comparisonContentType = 'comparison';
 const simpleProcessHeaderContentType = 'processCardHeader';
 const simpleProcessCardContentType = 'simpleProcess';
+const customersSayHeaderContentType = 'customersSayHeader';
+const customersSayCardContentType = 'customersSayCard';
 
 router.get('/homepage', async (req, res, next) => {
 
@@ -26,6 +28,8 @@ router.get('/homepage', async (req, res, next) => {
   const comparison = await axios.get(`${apiurl}${comparisonContentType}`);
   const simpleProcessHeader = await axios.get(`${apiurl}${simpleProcessHeaderContentType}`);
   const simpleProcessCards = await axios.get(`${apiurl}${simpleProcessCardContentType}`);
+  const customersSayHeader = await axios.get(`${apiurl}${customersSayHeaderContentType}`);
+  const customersSayCards = await axios.get(`${apiurl}${customersSayCardContentType}`);
 
   homepageData['header'] = header.data;
   homepageData['productDesc'] = productDesc.data;
@@ -33,6 +37,8 @@ router.get('/homepage', async (req, res, next) => {
   homepageData['comparison'] = comparison.data;
   homepageData['simpleProcessHeader'] = simpleProcessHeader.data;
   homepageData['simpleProcessCards'] = simpleProcessCards.data;
+  homepageData['customersSayHeader'] = customersSayHeader.data;
+  homepageData['customersSayCards'] = customersSayCards.data;
 
   res.send(homepageData);
 
