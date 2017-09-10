@@ -18,6 +18,7 @@ const simpleProcessCardContentType = 'simpleProcess';
 const customersSayHeaderContentType = 'customersSayHeader';
 const customersSayCardContentType = 'customersSayCard';
 const inBetaContentType = 'inBeta';
+const securityContentType = 'security';
 
 router.get('/homepage', async (req, res, next) => {
 
@@ -32,6 +33,7 @@ router.get('/homepage', async (req, res, next) => {
   const customersSayHeader = await axios.get(`${apiurl}${customersSayHeaderContentType}`);
   const customersSayCards = await axios.get(`${apiurl}${customersSayCardContentType}`);
   const inBeta = await axios.get(`${apiurl}${inBetaContentType}`);
+  const security = await axios.get(`${apiurl}${securityContentType}`);
 
   homepageData['header'] = header.data;
   homepageData['productDesc'] = productDesc.data;
@@ -42,6 +44,7 @@ router.get('/homepage', async (req, res, next) => {
   homepageData['customersSayHeader'] = customersSayHeader.data;
   homepageData['customersSayCards'] = customersSayCards.data;
   homepageData['inBeta'] = inBeta.data;
+  homepageData['security'] = security.data;
 
   res.send(homepageData);
 
