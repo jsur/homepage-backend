@@ -9,41 +9,43 @@ const space = process.env.CONTENTFUL_SPACEID;
 const accessToken = process.env.CONTENTFUL_API_KEY;
 const apiurl = `https://cdn.contentful.com/spaces/${space}/entries?access_token=${accessToken}&content_type=`
 
-const headerContentType = 'sFzTZbSuM8coEwygeUYes';
-const productDescContentType = 'productDescriptionCards';
-const whatIsContentType = 'whatIsConsentio';
-const comparisonContentType = 'comparison';
-const simpleProcessHeaderContentType = 'processCardHeader';
-const simpleProcessCardContentType = 'simpleProcess';
-const customersSayHeaderContentType = 'customersSayHeader';
-const customersSayCardContentType = 'customersSayCard';
-const inBetaContentType = 'inBeta';
-const securityContentType = 'security';
-const teamHeaderContentType = 'teamHeader';
-const teamCardsContentType = 'teamCard';
-const contactContentType = 'contact';
-const contactPhoneContentType = 'contactPhoneNumber';
-const footerContentType = 'footer';
-
 router.get('/homepage', async (req, res, next) => {
 
-  homepageData = {};
+  let [
+    header,
+    productDesc,
+    whatIs,
+    comparison,
+    simpleProcessHeader,
+    simpleProcessCards,
+    customersSayHeader,
+    customersSayCards,
+    inBeta,
+    security,
+    teamHeader,
+    teamCards,
+    contact,
+    contactPhone,
+    footer
+    ] = await Promise.all([
+     axios.get(`${apiurl}sFzTZbSuM8coEwygeUYes`),
+     axios.get(`${apiurl}productDescriptionCards`),
+     axios.get(`${apiurl}whatIsConsentio`),
+     axios.get(`${apiurl}comparison`),
+     axios.get(`${apiurl}processCardHeader`),
+     axios.get(`${apiurl}simpleProcess`),
+     axios.get(`${apiurl}customersSayHeader`),
+     axios.get(`${apiurl}customersSayCard`),
+     axios.get(`${apiurl}inBeta`),
+     axios.get(`${apiurl}security`),
+     axios.get(`${apiurl}teamHeader`),
+     axios.get(`${apiurl}teamCard`),
+     axios.get(`${apiurl}contact`),
+     axios.get(`${apiurl}contactPhoneNumber`),
+     axios.get(`${apiurl}footer`)
+   ]);
 
-  const header = await axios.get(`${apiurl}${headerContentType}`);
-  const productDesc = await axios.get(`${apiurl}${productDescContentType}`);
-  const whatIs = await axios.get(`${apiurl}${whatIsContentType}`);
-  const comparison = await axios.get(`${apiurl}${comparisonContentType}`);
-  const simpleProcessHeader = await axios.get(`${apiurl}${simpleProcessHeaderContentType}`);
-  const simpleProcessCards = await axios.get(`${apiurl}${simpleProcessCardContentType}`);
-  const customersSayHeader = await axios.get(`${apiurl}${customersSayHeaderContentType}`);
-  const customersSayCards = await axios.get(`${apiurl}${customersSayCardContentType}`);
-  const inBeta = await axios.get(`${apiurl}${inBetaContentType}`);
-  const security = await axios.get(`${apiurl}${securityContentType}`);
-  const teamHeader = await axios.get(`${apiurl}${teamHeaderContentType}`);
-  const teamCards = await axios.get(`${apiurl}${teamCardsContentType}`);
-  const contact = await axios.get(`${apiurl}${contactContentType}`);
-  const contactPhone = await axios.get(`${apiurl}${contactPhoneContentType}`);
-  const footer = await axios.get(`${apiurl}${footerContentType}`);
+  homepageData = {};
 
   homepageData['header'] = header.data;
   homepageData['productDesc'] = productDesc.data;
