@@ -23,6 +23,7 @@ const teamHeaderContentType = 'teamHeader';
 const teamCardsContentType = 'teamCard';
 const contactContentType = 'contact';
 const contactPhoneContentType = 'contactPhoneNumber';
+const footerContentType = 'footer';
 
 router.get('/homepage', async (req, res, next) => {
 
@@ -42,6 +43,7 @@ router.get('/homepage', async (req, res, next) => {
   const teamCards = await axios.get(`${apiurl}${teamCardsContentType}`);
   const contact = await axios.get(`${apiurl}${contactContentType}`);
   const contactPhone = await axios.get(`${apiurl}${contactPhoneContentType}`);
+  const footer = await axios.get(`${apiurl}${footerContentType}`);
 
   homepageData['header'] = header.data;
   homepageData['productDesc'] = productDesc.data;
@@ -57,6 +59,7 @@ router.get('/homepage', async (req, res, next) => {
   homepageData['teamCards'] = teamCards.data;
   homepageData['contact'] = contact.data;
   homepageData['contactPhone'] = contactPhone.data;
+  homepageData['footer'] = footer.data;
 
   res.send(homepageData);
 
